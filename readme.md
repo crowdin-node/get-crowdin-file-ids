@@ -24,7 +24,7 @@ map.
 This module requires node 7 or greater because it uses async functions.
 
 ```sh
-npm install map-files-to-crowdin-urls --save
+npm install get-crowdin-file-ids --save
 ```
 
 ## Usage
