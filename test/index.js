@@ -15,11 +15,11 @@ describe('getCrowdinFileIds', () => {
   })
 
   it('expects project name and Crowdin API key as arguments', async () => {
-    crowdin.post('/project/electron/info?key=xyz&json')
+    crowdin.post('/project/foo-project/info?key=xyz&json')
       .once()
       .reply(200, require('./fixture.json'))
 
-    const urls = await getCrowdinFileIds('electron', 'xyz')
+    const urls = await getCrowdinFileIds('foo-project', 'xyz')
     const paths = Object.keys(urls)
 
     urls.should.be.an('object')
@@ -30,7 +30,17 @@ describe('getCrowdinFileIds', () => {
   })
 
   it('falls back to CROWDIN_KEY env var', async () => {
-    crowdin.post('/project/electron/info?key=abc&json')
+    crowdin.post('/project/bar-project/info?key=abc&json')
+      .once()
+      .reply(200, require('./fixture.json'))
+
+    const urls = await getCrowdinFileIds('bar-project')
+    urls.should.be.an('object')
+  })
+
+  it('uses the unauthenticated website proxy for the `electron` project', async () => {
+    nock('https://electronjs.org/crowdin')
+      .post('/info')
       .once()
       .reply(200, require('./fixture.json'))
 

@@ -4,11 +4,17 @@ const path = require('path')
 
 async function getCrowdinFileIds (project, crowdinKey) {
   crowdinKey = crowdinKey || process.env.CROWDIN_KEY
+  let url
 
   assert(project, '`project` must be the first argument')
-  assert(crowdinKey, '`crowdinKey` must be the second argument or process.env.CROWDIN_KEY')
 
-  const url = `https://api.crowdin.com/api/project/${project}/info?key=${crowdinKey}&json`
+  if (project === 'electron') {
+    url = 'https://electronjs.org/crowdin/info'
+  } else {
+    assert(crowdinKey, '`crowdinKey` must be the second argument or process.env.CROWDIN_KEY')
+    url = `https://api.crowdin.com/api/project/${project}/info?key=${crowdinKey}&json`
+  }
+
   const res = await post(url, {json: true})
   return resolveFile({}, res.body.files)
 }
