@@ -1,6 +1,6 @@
 {
   "name": "get-crowdin-file-ids",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Generate deep links to your content on Crowdin",
   "main": "index.js",
   "repository": "https://github.com/electron/get-crowdin-file-ids",
@@ -14,10 +14,12 @@
     "mocha": "^4.0.1",
     "nock": "^9.0.25",
     "standard": "^10.0.3",
-    "standard-markdown": "^4.0.2"
+    "standard-markdown": "^4.0.2",
+    "semantic-release": "^11.0.2"
   },
   "scripts": {
-    "test": "mocha && standard --fix && standard-markdown"
+    "test": "mocha && standard --fix && standard-markdown",
+    "semantic-release": "semantic-release"
   },
   "engines": {
     "node": ">=7"
