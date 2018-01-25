@@ -40,7 +40,7 @@ describe('getCrowdinFileIds', () => {
 
   it('uses the unauthenticated website proxy for the `electron` project', async () => {
     nock('https://electronjs.org/crowdin')
-      .post('/info')
+      .get('/info')
       .once()
       .reply(200, require('./fixture.json'))
 
