@@ -13,13 +13,13 @@ async function getCrowdinFileIds (project, crowdinKey) {
   if (project === 'electron') {
     url = 'https://electronjs.org/crowdin/info'
     method = 'get' // Fix: HTTPError: Response code 405 (Method Not Allowed)
-                   // https://github.com/electron/electronjs.org/blob/f67079064ea071bee1ad46052d7940591e229a2c/routes/languages/proxy.js#L17
+    // https://github.com/electron/electronjs.org/blob/f67079064ea071bee1ad46052d7940591e229a2c/routes/languages/proxy.js#L17
   } else {
     assert(crowdinKey, '`crowdinKey` must be the second argument or process.env.CROWDIN_KEY')
     url = `https://api.crowdin.com/api/project/${project}/info?key=${crowdinKey}&json`
   }
 
-  const res = await got[method](url, {json: true})
+  const res = await got[method](url, { json: true })
   return resolveFile({}, res.body.files)
 }
 
