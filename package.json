@@ -4,7 +4,7 @@
   "description": "Generate deep links to your content on Crowdin",
   "main": "index.js",
   "types": "index.d.ts",
-  "repository": "https://github.com/electron/get-crowdin-file-ids",
+  "repository": "https://github.com/crowdin-node/get-crowdin-file-ids",
   "author": "zeke",
   "license": "MIT",
   "dependencies": {
